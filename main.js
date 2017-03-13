@@ -23,7 +23,8 @@ window.onload = function() {
                     List.items[j] = z;
                 }
             }
-        }                     
+        }
+        List.renderTable(List.items, containerList);         
         return A;    
     }
 
@@ -83,7 +84,6 @@ window.onload = function() {
             let SortInfo = this.dataset.sort.split(" ");
             let method = SortInfo[SortInfo.length-1];
             List.StateArray = BubbleSort(List.StateArray);
-            List.renderTable(List.items, containerList);
         }
 
         

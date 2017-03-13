@@ -9,19 +9,20 @@ window.onload = function() {
     {                           
         var n = A.length;
         var elems = document.querySelectorAll(".container-list ul.list tr:not(:first-child)");
-
-        for (var i = 0; i < n; i++)
+        
+        for (var i = 0; i < n-1; i++)
         { 
-            var min = A[0].num;
-            var minPos = 0;
-            for (var j = 0; j < n-i; j++) {
-               
-                if (A[j].num < min) { 
-                   min = A[j].num;
-                   minPos = j;
+            for (var j = 0; j < n-1-i; j++) {
+                if (A[j+1].num < A[j].num) { 
+                    var t = A[j+1];
+                    A[j+1] = A[j]; 
+                    A[j] = t; 
+
+                    var z = List.items[j+1];
+                    List.items[j+1] = List.items[j]; 
+                    List.items[j] = z;
                 }
             }
-            containerList.appendChild(elems[minPos]);
         }                     
         return A;    
     }
@@ -67,6 +68,10 @@ window.onload = function() {
         }
 
         renderTable(rows, toCont) {
+
+            if(containerList.querySelectorAll("tr")) {
+                containerList.querySelectorAll("tr").forEach((item)=>item.remove())
+            }
             this.renderHead(rows[0], toCont);
 
             for(let i = 0; i < rows.length; i++){
@@ -78,7 +83,7 @@ window.onload = function() {
             let SortInfo = this.dataset.sort.split(" ");
             let method = SortInfo[SortInfo.length-1];
             List.StateArray = BubbleSort(List.StateArray);
-            console.log( List.StateArray )
+            List.renderTable(List.items, containerList);
         }
 
         
@@ -93,5 +98,6 @@ window.onload = function() {
 
     var sortBtn = document.querySelector(".sortBtn");
     sortBtn.addEventListener("click", List.sortBy);
+    console.log(List)
 
 }

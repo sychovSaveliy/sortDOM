@@ -1,0 +1,16 @@
+.container-list td {
+    border: 2px solid #000;
+    padding: 20px;
+    position: relative;
+}
+.container-list th {
+    border: 2px solid #000;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.container-list td:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    
+}
+
